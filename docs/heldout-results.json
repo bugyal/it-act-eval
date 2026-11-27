@@ -1,0 +1,335 @@
+{
+  "scope": "Aggregate evidence for unreleased holdouts. Question/gold/response rows intentionally not published. Counts recomputed from recovered local artifacts; this is not a new inference run or independently public-reproducible result. v45 here names the TEST SPLIT, not a v4.5 model. Model version attribution follows archived run documentation; raw rows say karsastra.",
+  "audited_on": "2026-11-27",
+  "runs": [
+    {
+      "label": "Karsastra v4.4 on test-v45 — run 1",
+      "split_source_path": "data/splits/test-v45.jsonl",
+      "split_file_sha256": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617",
+      "question_sha256": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+      "files": [
+        {
+          "source_path": "eval/results/v45-final/karsastra-run1.jsonl",
+          "sha256": "c48022f097c8d3073a9c426e7e5f56dda975999ff4ae57f5c32c93d4aa77a662",
+          "rows": 185
+        }
+      ],
+      "rows": 185,
+      "unique_ids": 185,
+      "graded": 185,
+      "pass": 93,
+      "errors": 0,
+      "ungraded": 0,
+      "accuracy_graded_pct": 50.2703,
+      "pass_over_all_rows_pct": 50.2703,
+      "families": {
+        "mocktest_mined_gst_interest": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 0
+        },
+        "gst_computation": {
+          "rows": 33,
+          "graded": 33,
+          "pass": 19
+        },
+        "company_law_deadline": {
+          "rows": 6,
+          "graded": 6,
+          "pass": 3
+        },
+        "icai_mined_tds": {
+          "rows": 24,
+          "graded": 24,
+          "pass": 5
+        },
+        "slab_tax_chain": {
+          "rows": 22,
+          "graded": 22,
+          "pass": 22
+        },
+        "company_law_fact": {
+          "rows": 3,
+          "graded": 3,
+          "pass": 2
+        },
+        "capital_gains_ltcg": {
+          "rows": 14,
+          "graded": 14,
+          "pass": 8
+        },
+        "mocktest_mined_gst_value": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 0
+        },
+        "mocktest_mined_tds_grid": {
+          "rows": 10,
+          "graded": 10,
+          "pass": 5
+        },
+        "mocktest_mined_winnings": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 10
+        },
+        "mocktest_mined_house_property": {
+          "rows": 16,
+          "graded": 16,
+          "pass": 16
+        },
+        "company_law_computation": {
+          "rows": 5,
+          "graded": 5,
+          "pass": 0
+        },
+        "mocktest_mined_presumptive_election": {
+          "rows": 8,
+          "graded": 8,
+          "pass": 0
+        },
+        "gst_deadline": {
+          "rows": 6,
+          "graded": 6,
+          "pass": 2
+        },
+        "gst_fact": {
+          "rows": 2,
+          "graded": 2,
+          "pass": 1
+        }
+      }
+    },
+    {
+      "label": "Karsastra v4.4 on test-v45 — replication",
+      "split_source_path": "data/splits/test-v45.jsonl",
+      "split_file_sha256": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617",
+      "question_sha256": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+      "files": [
+        {
+          "source_path": "eval/results/v45-final/karsastra-run2-acct2.jsonl",
+          "sha256": "4c07ac880476fc227c4c632cb28c1e93f5f0137f01d38bd64f0d6ad82e63a15f",
+          "rows": 185
+        }
+      ],
+      "rows": 185,
+      "unique_ids": 185,
+      "graded": 185,
+      "pass": 93,
+      "errors": 0,
+      "ungraded": 0,
+      "accuracy_graded_pct": 50.2703,
+      "pass_over_all_rows_pct": 50.2703,
+      "families": {
+        "icai_mined_tds": {
+          "rows": 24,
+          "graded": 24,
+          "pass": 5
+        },
+        "company_law_deadline": {
+          "rows": 6,
+          "graded": 6,
+          "pass": 3
+        },
+        "mocktest_mined_gst_interest": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 0
+        },
+        "gst_computation": {
+          "rows": 33,
+          "graded": 33,
+          "pass": 19
+        },
+        "slab_tax_chain": {
+          "rows": 22,
+          "graded": 22,
+          "pass": 22
+        },
+        "company_law_fact": {
+          "rows": 3,
+          "graded": 3,
+          "pass": 2
+        },
+        "capital_gains_ltcg": {
+          "rows": 14,
+          "graded": 14,
+          "pass": 8
+        },
+        "mocktest_mined_gst_value": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 0
+        },
+        "mocktest_mined_tds_grid": {
+          "rows": 10,
+          "graded": 10,
+          "pass": 5
+        },
+        "mocktest_mined_winnings": {
+          "rows": 12,
+          "graded": 12,
+          "pass": 10
+        },
+        "mocktest_mined_house_property": {
+          "rows": 16,
+          "graded": 16,
+          "pass": 16
+        },
+        "company_law_computation": {
+          "rows": 5,
+          "graded": 5,
+          "pass": 0
+        },
+        "mocktest_mined_presumptive_election": {
+          "rows": 8,
+          "graded": 8,
+          "pass": 0
+        },
+        "gst_deadline": {
+          "rows": 6,
+          "graded": 6,
+          "pass": 2
+        },
+        "gst_fact": {
+          "rows": 2,
+          "graded": 2,
+          "pass": 1
+        }
+      }
+    },
+    {
+      "label": "Karsastra v4.4 on test-10k — disjoint four shards",
+      "split_source_path": "data/splits/test-10k.jsonl",
+      "split_file_sha256": "4200bc2dc9f4abdbdff26c99029a55ced8a5c95c523d8debe6130d64d172eff0",
+      "question_sha256": "2596de560afdcb1f2af8fa9b1bab0894d20a38d718021c979f5ce3d970ea4325",
+      "files": [
+        {
+          "source_path": "eval/results/10k-final/karsastra-shard0.jsonl",
+          "sha256": "18b6a7fccc622823a05675164bb29c7864acfae52fe023a612f73af3b4c25980",
+          "rows": 2800
+        },
+        {
+          "source_path": "eval/results/10k-final/karsastra-shard1.jsonl",
+          "sha256": "66d04a68e5f00c41e137a4ca2d504c3505f7119d4ff676a66c72beb9dd797ef4",
+          "rows": 2800
+        },
+        {
+          "source_path": "eval/results/10k-final/karsastra-shard2.jsonl",
+          "sha256": "a2abbb73bbc074d4faefa240f80334f30d0efd465b9dfaffd4e9a62cec437fd8",
+          "rows": 2800
+        },
+        {
+          "source_path": "eval/results/10k-final/karsastra-shard3.jsonl",
+          "sha256": "c98fd0802e8d3fc405e1581d34066547066fe5871b4c5c515492a4aa3daced97",
+          "rows": 1609
+        }
+      ],
+      "rows": 10009,
+      "unique_ids": 10009,
+      "graded": 10002,
+      "pass": 2151,
+      "errors": 0,
+      "ungraded": 7,
+      "accuracy_graded_pct": 21.5057,
+      "pass_over_all_rows_pct": 21.4907,
+      "families": {
+        "tds_computation": {
+          "rows": 6889,
+          "graded": 6889,
+          "pass": 0
+        },
+        "code_lookup": {
+          "rows": 1456,
+          "graded": 1456,
+          "pass": 1441
+        },
+        "threshold_application": {
+          "rows": 235,
+          "graded": 235,
+          "pass": 98
+        },
+        "slab_tax_chain": {
+          "rows": 273,
+          "graded": 273,
+          "pass": 0
+        },
+        "threshold_probe": {
+          "rows": 95,
+          "graded": 95,
+          "pass": 85
+        },
+        "gst_interest_s50": {
+          "rows": 248,
+          "graded": 248,
+          "pass": 0
+        },
+        "section_map": {
+          "rows": 70,
+          "graded": 64,
+          "pass": 56
+        },
+        "gst_value_additions": {
+          "rows": 97,
+          "graded": 97,
+          "pass": 0
+        },
+        "code_to_nature": {
+          "rows": 178,
+          "graded": 178,
+          "pass": 138
+        },
+        "gst_deadline": {
+          "rows": 18,
+          "graded": 18,
+          "pass": 3
+        },
+        "capital_gains_ltcg": {
+          "rows": 48,
+          "graded": 48,
+          "pass": 3
+        },
+        "section_map_rev": {
+          "rows": 56,
+          "graded": 55,
+          "pass": 51
+        },
+        "section_to_code": {
+          "rows": 182,
+          "graded": 182,
+          "pass": 177
+        },
+        "company_law_computation": {
+          "rows": 48,
+          "graded": 48,
+          "pass": 20
+        },
+        "presumptive_check": {
+          "rows": 24,
+          "graded": 24,
+          "pass": 18
+        },
+        "due_date": {
+          "rows": 30,
+          "graded": 30,
+          "pass": 21
+        },
+        "winnings": {
+          "rows": 40,
+          "graded": 40,
+          "pass": 33
+        },
+        "tds_grid": {
+          "rows": 16,
+          "graded": 16,
+          "pass": 6
+        },
+        "company_law_deadline": {
+          "rows": 6,
+          "graded": 6,
+          "pass": 1
+        }
+      }
+    }
+  ]
+}

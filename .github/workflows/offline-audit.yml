@@ -1,0 +1,37 @@
+name: offline-audit
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: eval/go.mod
+          cache-dependency-path: eval/go.mod
+      - name: Audit regression tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Verify original locked split and one historical result without network
+        run: python3 scripts/audit.py --split data/splits/test.jsonl --lock data/splits/test.locked.json --result eval/results/karsastra-4b-20261007-034646.jsonl > /dev/null
+      - name: Verify committed per-file audit reports
+        run: python3 scripts/audit.py --manifest data/audit-manifest.json --json-out docs/results-audit.json --md-out docs/results-audit.md --check
+      - name: Go eval tests
+        working-directory: eval
+        env:
+          GOWORK: 'off'
+        run: go test ./...
+      - name: Reproduce v4.4 strict-v1 regrade byte for byte
+        working-directory: eval
+        env:
+          GOWORK: 'off'
+        run: |
+          go run ./cmd/tax-eval -repo .. -split test -regrade results/recovered/karsastra-v44-locked-20261013.jsonl -regrade-out "$RUNNER_TEMP/v44-strict-v1.jsonl"
+          cmp "$RUNNER_TEMP/v44-strict-v1.jsonl" results/recovered/karsastra-v44-locked-20261013-strict-v1.jsonl

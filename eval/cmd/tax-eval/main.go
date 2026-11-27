@@ -40,7 +40,7 @@ const promptPreamble = "Answer the following Indian tax compliance question prec
 func main() {
 	var (
 		split       = flag.String("split", "test", "split name under data/splits/")
-		repoRoot    = flag.String("repo", "..", "tax-model repo root (holds data/)")
+		repoRoot    = flag.String("repo", "..", "repository root (holds data/splits/)")
 		backendName = flag.String("backend", "", "zai|ollama|sarvam|claude|custom")
 		model       = flag.String("model", "", "model id sent to the endpoint")
 		baseURL     = flag.String("base-url", "", "override OpenAI-compatible base URL")
@@ -52,10 +52,26 @@ func main() {
 		timeoutS    = flag.Int("timeout", 120, "per-request timeout seconds")
 		outDir      = flag.String("out", "results", "output directory for JSONL + reports")
 		report      = flag.String("report", "", "aggregate all results in -out into this md file and exit")
+		regradeFrom = flag.String("regrade", "", "offline: regrade this original results JSONL against -split (no model calls)")
+		regradeOut  = flag.String("regrade-out", "", "new JSONL path for independent regraded rows (required with -regrade)")
 		allowUnlock = flag.Bool("allow-unlocked", false, "run even if test-set sha256 does not match the lock")
 		resumeFrom  = flag.String("resume-from", "", "jsonl from a prior partial run of the SAME model: skip tasks that already have a model response")
 	)
 	flag.Parse()
+	if *regradeFrom != "" {
+		if *report != "" || *regradeOut == "" {
+			fatal(fmt.Errorf("-regrade requires -regrade-out and cannot be combined with -report"))
+		}
+		status, err := checkSplitLock(*repoRoot, *split, *allowUnlock)
+		fatalIf(err)
+		fmt.Println(status)
+		fatalIf(taxeval.RegradeResults(filepath.Join(*repoRoot, "data", "splits", *split+".jsonl"), *regradeFrom, *regradeOut))
+		fmt.Printf("regraded with %s: %s\n", taxeval.StrictGraderVersion, *regradeOut)
+		return
+	}
+	if *regradeOut != "" {
+		fatal(fmt.Errorf("-regrade-out requires -regrade"))
+	}
 
 	if *report != "" {
 		if err := taxeval.BuildReport(*outDir, *report); err != nil {
@@ -65,6 +81,9 @@ func main() {
 		return
 	}
 
+	if err := validateConcurrency(*concurrency); err != nil {
+		fatal(err)
+	}
 	if *backendName == "" {
 		fatal(fmt.Errorf("-backend required (zai|ollama|sarvam|claude|custom)"))
 	}
@@ -84,17 +103,10 @@ func main() {
 
 	// ---- load + lock check ----
 	splitPath := filepath.Join(*repoRoot, "data", "splits", *split+".jsonl")
-	lockPath := filepath.Join(*repoRoot, "data", "splits", "test.locked.json")
 	done := map[string]bool{}
-	if *split != "test" {
-		fmt.Println("NOTE: non-test split; skipping lock verification")
-	} else {
-		actual, err := taxeval.VerifyLock(splitPath, lockPath)
-		if err != nil && !*allowUnlock {
-			fatal(fmt.Errorf("lock check: %w (actual=%s; pass -allow-unlocked to override)", err, actual))
-		}
-		fmt.Println("lock OK:", actual[:16])
-	}
+	status, err := checkSplitLock(*repoRoot, *split, *allowUnlock)
+	fatalIf(err)
+	fmt.Println(status)
 
 	// ---- resume: collect ids that already have a model response ----
 	if *resumeFrom != "" {
@@ -118,6 +130,7 @@ func main() {
 		tasks = tasks[:*limit]
 	}
 	fmt.Printf("loaded %d tasks from %s\n", len(tasks), splitPath)
+	pending := pendingTasks(tasks, done)
 
 	// ---- resolve API key ----
 	var apiKey string
@@ -192,6 +205,7 @@ func main() {
 				rec.Gold = t.Answer
 				rec.Model = *model
 				rec.Backend = *backendName
+				rec.GraderVersion = taxeval.StrictGraderVersion
 
 				t0 := time.Now()
 				var content string
@@ -282,10 +296,7 @@ func main() {
 			}
 		}()
 	}
-	for _, t := range tasks {
-		if done[t.ID] {
-			continue
-		}
+	for _, t := range pending {
 		jobs <- t
 	}
 	close(jobs)
@@ -303,7 +314,7 @@ func main() {
 	// ---- results-integrity gate (review fix #1) ----
 	// Every dispatched task must have exactly one parseable record; torn or
 	// missing lines fail the run instead of silently skewing the baseline.
-	expected := len(tasks) - len(done)
+	expected := len(pending)
 	if werr := taxeval.VerifyResultsIntegrity(outPath, expected); werr != nil {
 		fatal(fmt.Errorf("RESULTS INTEGRITY FAILED: %w", werr))
 	}
@@ -326,4 +337,44 @@ func fatalIf(err error) {
 func fatal(err error) {
 	fmt.Fprintln(os.Stderr, "error:", err)
 	os.Exit(1)
+}
+
+func validateConcurrency(n int) error {
+	if n <= 0 {
+		return fmt.Errorf("-concurrency must be positive (got %d)", n)
+	}
+	return nil
+}
+
+func pendingTasks(tasks []taxeval.Task, done map[string]bool) []taxeval.Task {
+	var pending []taxeval.Task
+	for _, t := range tasks {
+		if !done[t.ID] {
+			pending = append(pending, t)
+		}
+	}
+	return pending
+}
+
+func checkSplitLock(root, split string, allowUnlocked bool) (string, error) {
+	if split == "" || split != filepath.Base(split) || split == "." || split == ".." {
+		return "", fmt.Errorf("invalid split name %q", split)
+	}
+	splitDir := filepath.Join(root, "data", "splits")
+	lockPath := filepath.Join(splitDir, split+".locked.json")
+	if !strings.HasPrefix(split, "test") {
+		if _, err := os.Stat(lockPath); os.IsNotExist(err) {
+			return "NOTE: non-test split; no lock present", nil
+		} else if err != nil {
+			return "", err
+		}
+	}
+	actual, err := taxeval.VerifyLock(filepath.Join(splitDir, split+".jsonl"), lockPath)
+	if err != nil {
+		if !allowUnlocked {
+			return "", fmt.Errorf("lock check (%s): %w (actual=%s; pass -allow-unlocked to override)", lockPath, err, actual)
+		}
+		return fmt.Sprintf("WARNING: lock NOT verified (%s): %v (actual=%s)", lockPath, err, actual), nil
+	}
+	return "lock OK: " + actual[:16], nil
 }

@@ -1,4 +1,6 @@
-# Baseline scores — Tax-Model locked test set (785 tasks)
+# Historical baseline scores — Tax-Model locked test set (785 tasks)
+
+> **Archived October 7 aggregate, not the current results table.** This report pooled files and included partial runs. Its error column also conflates some ungradable rows with runtime failures. The old Sonnet 96.6% figure is not a completed-run result; one underlying archive is truncated. Do not use this table for current model rankings. Use the [audited per-file report](../../docs/results-audit.md), which does not select the best answer across retries.
 
 Generated: 2026-10-07 09:28
 
