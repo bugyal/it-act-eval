@@ -1,0 +1,15 @@
+{
+  "n_test": 620,
+  "sha256_questions": "87c161dcd66cd5efe5e8ad6157659157402df65711c211d17f56e854ce406ac6",
+  "sha256_file": "97cacd34b54a06b6f8a69ddd0273e0cf3c3e1a26958666dba9fe8662f524a640",
+  "source_lock": {
+    "locked_at": "2026-10-08",
+    "n_test": 620,
+    "sha256_questions": "87c161dcd66cd5efe5e8ad6157659157402df65711c211d17f56e854ce406ac6",
+    "sha256_file": "97cacd34b54a06b6f8a69ddd0273e0cf3c3e1a26958666dba9fe8662f524a640",
+    "policy": "test-v4 locked eval (Pass A): 15 slices x 40 + 40 hinglish + 20 multi-part; schema identical to data/splits/test.jsonl. Locked: downstream passes must not modify this file; Pass B/C decontaminate against it with the same 8-gram policy.",
+    "gold_sha": "18f46d0a7ccbc95139a2e60d22e85a29e70dbe5bd4af16a051066b94a0bb9d17",
+    "grader_sha": "578209defa4f83be40fe9b872d2b162de0470e5978ff680e1ef88d259303b9f8",
+    "benchmark_id": "1cfebf133a0a509b"
+  }
+}

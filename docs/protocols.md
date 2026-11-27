@@ -43,7 +43,7 @@ The original split is **within-fact / phrasing-held-out**, not fact-held-out: th
 
 The original question and answer files have been public since October 7. Neither their historical lock nor an exact-duplicate check proves that a later model never saw them. Do not claim perpetual blindness or absence of contamination.
 
-Later `test-v2`, `test-v4`, `test-v45`, Hindi and `test-10k` experiments have different questions, distributions, and sometimes broader GST/company-law scope. Scores on them are not deltas against the original benchmark. This refresh publishes aggregate evidence for unreleased holdouts, **not their questions, golds, or raw responses**. This preserves the holdouts and avoids silently expanding the licensing scope of the original public release.
+Later `test-v2`, `test-v4`, `test-v45`, Hindi and `test-10k` experiments have different questions, distributions, and sometimes broader GST/company-law scope. Scores on them are not deltas against the original benchmark. These datasets are now published with questions and reference answers; archived 185-question runs and four disjoint 10k result shards are also available. See [dataset details](datasets.md). They are no longer secret holdouts for future evaluations. New release locks include a complete-file SHA-256 checked by the harness and audit, while preserving original lock metadata separately. Historical worker verdicts can be recounted; reproducing them with a different grader is a separate experiment.
 
 ## Grader limitations
 

@@ -1,0 +1,243 @@
+{
+  "source_repository": "Karsastra tax-model research workspace (read-only import)",
+  "release_status": "Public evaluation snapshot release; questions, reference answers and archived response files",
+  "hashes": "sha256_file is SHA-256 over exact file bytes; sha256_questions in compatible locks is SHA-256 over sorted original question strings joined by newline (UTF-8, no trailing newline).",
+  "files": [
+    {
+      "kind": "split",
+      "split": "test-v2",
+      "source_path": "data/splits/test-v2.jsonl",
+      "path": "data/splits/test-v2.jsonl",
+      "rows": 199,
+      "bytes": 94356,
+      "sha256_file": "7f1ed1920fe09d37cd298e1fbd4822fe23a00e908c6cc3e23b68c739e6b27647"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-v2",
+      "source_path": "data/splits/test-v2.locked.json",
+      "path": "data/splits/test-v2.locked.json",
+      "source_sha256_file": "99d1259b357f588a01732141bf4b2a52b79f6a6fbe815688966d1642a020b5ae",
+      "sha256_file": "17bc9a7a1b57cb1c0503982523f140dafc6a013b16c49e2e3dcac0e7613538ff",
+      "bytes": 1277,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-v4",
+      "source_path": "data/splits/test-v4.jsonl",
+      "path": "data/splits/test-v4.jsonl",
+      "rows": 620,
+      "bytes": 381098,
+      "sha256_file": "97cacd34b54a06b6f8a69ddd0273e0cf3c3e1a26958666dba9fe8662f524a640"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-v4",
+      "source_path": "data/splits/test-v4.locked.json",
+      "path": "data/splits/test-v4.locked.json",
+      "source_sha256_file": "3d933666ab532faa28b1e30d621c9b8f86c7d2b1834fda23b1f44b70a29648d1",
+      "sha256_file": "60b2ecd354a913505453679a44038d9bdeab722744837001b0d7bdf2b5d1b222",
+      "bytes": 910,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-v45",
+      "source_path": "data/splits/test-v45.jsonl",
+      "path": "data/splits/test-v45.jsonl",
+      "rows": 185,
+      "bytes": 165419,
+      "sha256_file": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-v45",
+      "source_path": "data/splits/test-v45.locked.json",
+      "path": "data/splits/test-v45.locked.json",
+      "source_sha256_file": "251190d867a510d1e8193f2fcc9760066c2f8e714a73a17ca28b259ab8251c50",
+      "sha256_file": "d69aa32411a939a64707057054b405a6b4f00a2182fd07c0b448ebd79148621c",
+      "bytes": 706,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "hindi_eval",
+      "source_path": "data/splits/hindi_eval.jsonl",
+      "path": "data/splits/hindi_eval.jsonl",
+      "rows": 85,
+      "bytes": 76366,
+      "sha256_file": "506916c523d76803a2e75b08deccf1434b3a92371450a9fa3850f1c4fc7785d3"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "hindi_eval",
+      "source_path": "data/splits/hindi_eval.locked.json",
+      "path": "data/splits/hindi_eval.locked.json",
+      "source_sha256_file": "0a0a08eb1995b0d13b7123491e7bb5a76197a60096438607a3c5314192ace7c3",
+      "sha256_file": "5c48db13a45762ce5a1deb6af34f1cf79536906550e078c222064f9ac0e6b59b",
+      "bytes": 1021,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-10k",
+      "source_path": "data/splits/test-10k.jsonl",
+      "path": "data/splits/test-10k.jsonl",
+      "rows": 10009,
+      "bytes": 5045787,
+      "sha256_file": "4200bc2dc9f4abdbdff26c99029a55ced8a5c95c523d8debe6130d64d172eff0"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-10k",
+      "source_path": "data/splits/test-10k.locked.json",
+      "path": "data/splits/test-10k.locked.json",
+      "source_sha256_file": "32f415b6a0dea3499e34754ca76d79050a0f1ba11882c9801541c9b91bc5c3c2",
+      "sha256_file": "e693079b876631ccb0c85e63b5021ed588798c5e68ebdb1acc733fba92dc9dc7",
+      "bytes": 1284,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-10k-shard0",
+      "source_path": "data/splits/test-10k-shard0.jsonl",
+      "path": "data/splits/test-10k-shard0.jsonl",
+      "rows": 2800,
+      "bytes": 1415110,
+      "sha256_file": "0ec7281967ddf8d9d033a282d5f9925e4fc4ffe305527de7166dcfbd8f70d64e"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-10k-shard0",
+      "source_path": "data/splits/test-10k-shard0.locked.json",
+      "path": "data/splits/test-10k-shard0.locked.json",
+      "source_sha256_file": "d164a07bb939e71cc01271a0b9042f2ea62daaa6545536b95258ea4bbfd3cb17",
+      "sha256_file": "cbf582900cbc44dbf0b5c9f43a10b0beaa9b9d47420bd41af12b8688a0dd61c3",
+      "bytes": 1289,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-10k-shard1",
+      "source_path": "data/splits/test-10k-shard1.jsonl",
+      "path": "data/splits/test-10k-shard1.jsonl",
+      "rows": 2800,
+      "bytes": 1409208,
+      "sha256_file": "8111a5c0164af7bb9ce36cc5222220489145eec286597bc678e4fc04aa74f69a"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-10k-shard1",
+      "source_path": "data/splits/test-10k-shard1.locked.json",
+      "path": "data/splits/test-10k-shard1.locked.json",
+      "source_sha256_file": "10492e0f69c87bc8f1824f2ce1b7f31fd35252b0ed7eb4ac9adac2bf327f0adb",
+      "sha256_file": "2857a94b66699692106908870fd6cf70e41058a0b311ff6f987b875cf74706a1",
+      "bytes": 1289,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-10k-shard2",
+      "source_path": "data/splits/test-10k-shard2.jsonl",
+      "path": "data/splits/test-10k-shard2.jsonl",
+      "rows": 2800,
+      "bytes": 1411267,
+      "sha256_file": "e6e946700fb6ea84f3edccc3d7a3193b9f84de3dbadadbfcaa7764d03f2baa42"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-10k-shard2",
+      "source_path": "data/splits/test-10k-shard2.locked.json",
+      "path": "data/splits/test-10k-shard2.locked.json",
+      "source_sha256_file": "e81385aa9415654cf9f63bcc5c69a71cde41e911654f93e4c1ab605af082d9b6",
+      "sha256_file": "2f1289a022e35c0c4e24d2306d25fe3b5526c310adff418d7cb130e9b1daeadc",
+      "bytes": 1289,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "split",
+      "split": "test-10k-shard3",
+      "source_path": "data/splits/test-10k-shard3.jsonl",
+      "path": "data/splits/test-10k-shard3.jsonl",
+      "rows": 1609,
+      "bytes": 810202,
+      "sha256_file": "ef9c55c98c557a7db0f3bb91193b0465ebb220dfc99e3e1b1d43d6af78f92f0e"
+    },
+    {
+      "kind": "compatible_lock",
+      "split": "test-10k-shard3",
+      "source_path": "data/splits/test-10k-shard3.locked.json",
+      "path": "data/splits/test-10k-shard3.locked.json",
+      "source_sha256_file": "72f7a6be0ff0fb9a9e8cf4b79999e2d58d2dee2925d65c5aea4e736aaa7de9cb",
+      "sha256_file": "22b8ee66b0528c5165da44aa90fa2fbcf0f1bb67f767e6578cc79412908f3c9b",
+      "bytes": 1289,
+      "derivation": "Compatible sorted-question/file lock; source_lock is original parsed metadata, not a claim of equal hash recipes."
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-10k-shard0",
+      "source_path": "eval/results/10k-final/karsastra-shard0.jsonl",
+      "path": "eval/results/published/karsastra-shard0.jsonl",
+      "rows": 2800,
+      "bytes": 2131661,
+      "sha256_file": "18b6a7fccc622823a05675164bb29c7864acfae52fe023a612f73af3b4c25980",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-10k-shard1",
+      "source_path": "eval/results/10k-final/karsastra-shard1.jsonl",
+      "path": "eval/results/published/karsastra-shard1.jsonl",
+      "rows": 2800,
+      "bytes": 2120594,
+      "sha256_file": "66d04a68e5f00c41e137a4ca2d504c3505f7119d4ff676a66c72beb9dd797ef4",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-10k-shard2",
+      "source_path": "eval/results/10k-final/karsastra-shard2.jsonl",
+      "path": "eval/results/published/karsastra-shard2.jsonl",
+      "rows": 2800,
+      "bytes": 2130025,
+      "sha256_file": "a2abbb73bbc074d4faefa240f80334f30d0efd465b9dfaffd4e9a62cec437fd8",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-10k-shard3",
+      "source_path": "eval/results/10k-final/karsastra-shard3.jsonl",
+      "path": "eval/results/published/karsastra-shard3.jsonl",
+      "rows": 1609,
+      "bytes": 1229309,
+      "sha256_file": "c98fd0802e8d3fc405e1581d34066547066fe5871b4c5c515492a4aa3daced97",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-v45",
+      "source_path": "eval/results/v45-final/karsastra-run1.jsonl",
+      "path": "eval/results/published/karsastra-run1.jsonl",
+      "rows": 185,
+      "bytes": 175754,
+      "sha256_file": "c48022f097c8d3073a9c426e7e5f56dda975999ff4ae57f5c32c93d4aa77a662",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    },
+    {
+      "kind": "raw_result",
+      "split": "test-v45",
+      "source_path": "eval/results/v45-final/karsastra-run2-acct2.jsonl",
+      "path": "eval/results/published/karsastra-run2-acct2.jsonl",
+      "rows": 185,
+      "bytes": 175778,
+      "sha256_file": "4c07ac880476fc227c4c632cb28c1e93f5f0137f01d38bd64f0d6ad82e63a15f",
+      "membership": "id = sha256(question)[:8]; exact question and gold match split; unique IDs and full split coverage"
+    }
+  ],
+  "validation": {
+    "test_10k_shards_concatenate_to_full_split": true,
+    "test_10k_result_unique_full_coverage": 10009,
+    "result_question_gold_id_mismatches": 0
+  }
+}

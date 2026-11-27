@@ -351,6 +351,138 @@
       },
       "ungraded": 9,
       "unique": 785
+    },
+    {
+      "emitted": 2800,
+      "errors": 0,
+      "fail": 2203,
+      "graded": 2798,
+      "historical": true,
+      "label": "karsastra-shard0 — test-10k-shard0",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 595,
+      "path": "eval/results/published/karsastra-shard0.jsonl",
+      "sha256_result": "18b6a7fccc622823a05675164bb29c7864acfae52fe023a612f73af3b4c25980",
+      "split": {
+        "lock": "data/splits/test-10k-shard0.locked.json",
+        "path": "data/splits/test-10k-shard0.jsonl",
+        "sha256_lock": "cbf582900cbc44dbf0b5c9f43a10b0beaa9b9d47420bd41af12b8688a0dd61c3",
+        "sha256_questions": "70db9e158283ed299032d1b74bbe257844d50e0d73ba27a94426f2d536cc4246",
+        "sha256_split": "0ec7281967ddf8d9d033a282d5f9925e4fc4ffe305527de7166dcfbd8f70d64e",
+        "tasks": 2800
+      },
+      "ungraded": 2,
+      "unique": 2800
+    },
+    {
+      "emitted": 2800,
+      "errors": 0,
+      "fail": 2165,
+      "graded": 2797,
+      "historical": true,
+      "label": "karsastra-shard1 — test-10k-shard1",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 632,
+      "path": "eval/results/published/karsastra-shard1.jsonl",
+      "sha256_result": "66d04a68e5f00c41e137a4ca2d504c3505f7119d4ff676a66c72beb9dd797ef4",
+      "split": {
+        "lock": "data/splits/test-10k-shard1.locked.json",
+        "path": "data/splits/test-10k-shard1.jsonl",
+        "sha256_lock": "2857a94b66699692106908870fd6cf70e41058a0b311ff6f987b875cf74706a1",
+        "sha256_questions": "7d57daf0c4970cecfcae71c85924d393a4c246cdaf55f747d991485463ffae09",
+        "sha256_split": "8111a5c0164af7bb9ce36cc5222220489145eec286597bc678e4fc04aa74f69a",
+        "tasks": 2800
+      },
+      "ungraded": 3,
+      "unique": 2800
+    },
+    {
+      "emitted": 2800,
+      "errors": 0,
+      "fail": 2208,
+      "graded": 2798,
+      "historical": true,
+      "label": "karsastra-shard2 — test-10k-shard2",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 590,
+      "path": "eval/results/published/karsastra-shard2.jsonl",
+      "sha256_result": "a2abbb73bbc074d4faefa240f80334f30d0efd465b9dfaffd4e9a62cec437fd8",
+      "split": {
+        "lock": "data/splits/test-10k-shard2.locked.json",
+        "path": "data/splits/test-10k-shard2.jsonl",
+        "sha256_lock": "2f1289a022e35c0c4e24d2306d25fe3b5526c310adff418d7cb130e9b1daeadc",
+        "sha256_questions": "73d30cac3b6f8290bab89cde027fcdcd4568e62fc8e62263e88e4ca3bb9a0e12",
+        "sha256_split": "e6e946700fb6ea84f3edccc3d7a3193b9f84de3dbadadbfcaa7764d03f2baa42",
+        "tasks": 2800
+      },
+      "ungraded": 2,
+      "unique": 2800
+    },
+    {
+      "emitted": 1609,
+      "errors": 0,
+      "fail": 1275,
+      "graded": 1609,
+      "historical": true,
+      "label": "karsastra-shard3 — test-10k-shard3",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 334,
+      "path": "eval/results/published/karsastra-shard3.jsonl",
+      "sha256_result": "c98fd0802e8d3fc405e1581d34066547066fe5871b4c5c515492a4aa3daced97",
+      "split": {
+        "lock": "data/splits/test-10k-shard3.locked.json",
+        "path": "data/splits/test-10k-shard3.jsonl",
+        "sha256_lock": "22b8ee66b0528c5165da44aa90fa2fbcf0f1bb67f767e6578cc79412908f3c9b",
+        "sha256_questions": "2709dec870c0e24592cc43bd8e12cecd98c880bd901d40858ab07c3a902fa733",
+        "sha256_split": "ef9c55c98c557a7db0f3bb91193b0465ebb220dfc99e3e1b1d43d6af78f92f0e",
+        "tasks": 1609
+      },
+      "ungraded": 0,
+      "unique": 1609
+    },
+    {
+      "emitted": 185,
+      "errors": 0,
+      "fail": 92,
+      "graded": 185,
+      "historical": true,
+      "label": "karsastra-run1 — test-v45",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 93,
+      "path": "eval/results/published/karsastra-run1.jsonl",
+      "sha256_result": "c48022f097c8d3073a9c426e7e5f56dda975999ff4ae57f5c32c93d4aa77a662",
+      "split": {
+        "lock": "data/splits/test-v45.locked.json",
+        "path": "data/splits/test-v45.jsonl",
+        "sha256_lock": "d69aa32411a939a64707057054b405a6b4f00a2182fd07c0b448ebd79148621c",
+        "sha256_questions": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+        "sha256_split": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617",
+        "tasks": 185
+      },
+      "ungraded": 0,
+      "unique": 185
+    },
+    {
+      "emitted": 185,
+      "errors": 0,
+      "fail": 92,
+      "graded": 185,
+      "historical": true,
+      "label": "karsastra-run2-acct2 — test-v45",
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.",
+      "pass": 93,
+      "path": "eval/results/published/karsastra-run2-acct2.jsonl",
+      "sha256_result": "4c07ac880476fc227c4c632cb28c1e93f5f0137f01d38bd64f0d6ad82e63a15f",
+      "split": {
+        "lock": "data/splits/test-v45.locked.json",
+        "path": "data/splits/test-v45.jsonl",
+        "sha256_lock": "d69aa32411a939a64707057054b405a6b4f00a2182fd07c0b448ebd79148621c",
+        "sha256_questions": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+        "sha256_split": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617",
+        "tasks": 185
+      },
+      "ungraded": 0,
+      "unique": 185
     }
   ],
   "schema_version": 1

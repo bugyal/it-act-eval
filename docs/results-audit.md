@@ -20,6 +20,12 @@ Each row is one result file; runs are not pooled or rescored. Transport/provider
 | karsastra-v42-locked-20261011 | data/splits/test.jsonl | d016c1b4ca50821137f97b7d462bb543c57564495d8ed37377694108fbeb9e5b | 785 | 785 | 0 | 776 | 565 | 211 | 9 | yes |
 | Karsastra v4.4 — October 13 extended-worker verdicts | data/splits/test-2026-10-11.jsonl | f40f59c0e35af55a40642c2befa9ea672582dc9bf2a57dfab9cc11639df0beb0 | 785 | 785 | 0 | 785 | 702 | 83 | 0 | yes |
 | Karsastra v4.4 — offline strict-v1 regrade of October 13 responses | data/splits/test.jsonl | 110dcb1098cf2c1805401e897af76df740d85b53453901009cc63f379b5c8675 | 785 | 785 | 0 | 776 | 698 | 78 | 9 | yes |
+| karsastra-shard0 — test-10k-shard0 | data/splits/test-10k-shard0.jsonl | 18b6a7fccc622823a05675164bb29c7864acfae52fe023a612f73af3b4c25980 | 2800 | 2800 | 0 | 2798 | 595 | 2203 | 2 | yes |
+| karsastra-shard1 — test-10k-shard1 | data/splits/test-10k-shard1.jsonl | 66d04a68e5f00c41e137a4ca2d504c3505f7119d4ff676a66c72beb9dd797ef4 | 2800 | 2800 | 0 | 2797 | 632 | 2165 | 3 | yes |
+| karsastra-shard2 — test-10k-shard2 | data/splits/test-10k-shard2.jsonl | a2abbb73bbc074d4faefa240f80334f30d0efd465b9dfaffd4e9a62cec437fd8 | 2800 | 2800 | 0 | 2798 | 590 | 2208 | 2 | yes |
+| karsastra-shard3 — test-10k-shard3 | data/splits/test-10k-shard3.jsonl | c98fd0802e8d3fc405e1581d34066547066fe5871b4c5c515492a4aa3daced97 | 1609 | 1609 | 0 | 1609 | 334 | 1275 | 0 | yes |
+| karsastra-run1 — test-v45 | data/splits/test-v45.jsonl | c48022f097c8d3073a9c426e7e5f56dda975999ff4ae57f5c32c93d4aa77a662 | 185 | 185 | 0 | 185 | 93 | 92 | 0 | yes |
+| karsastra-run2-acct2 — test-v45 | data/splits/test-v45.jsonl | 4c07ac880476fc227c4c632cb28c1e93f5f0137f01d38bd64f0d6ad82e63a15f | 185 | 185 | 0 | 185 | 93 | 92 | 0 | yes |
 
 Source paths, split/lock SHA-256, and question-lock digests are in the JSON report.
 
@@ -39,3 +45,9 @@ Source paths, split/lock SHA-256, and question-lock digests are in the JSON repo
 - **karsastra-v42-locked-20261011**: Recovered SFT evaluation on original 785-question gold snapshot. Four reasoned and five ungradable rows excluded from graded denominator.
 - **Karsastra v4.4 — October 13 extended-worker verdicts**: 785/785 graded under the later keyword/status worker grading protocol; not the original 776-gradeable protocol. Recovered from completed Kaggle output, all questions/golds match revised snapshot.
 - **Karsastra v4.4 — offline strict-v1 regrade of October 13 responses**: Derived offline from karsastra-v44-locked-20261013.jsonl using original public golds and unchanged Go strict-v1 grader. Not a new inference run or an independent sample.
+- **karsastra-shard0 — test-10k-shard0**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.
+- **karsastra-shard1 — test-10k-shard1**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.
+- **karsastra-shard2 — test-10k-shard2**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.
+- **karsastra-shard3 — test-10k-shard3**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.
+- **karsastra-run1 — test-v45**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.
+- **karsastra-run2-acct2 — test-v45**: Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs.

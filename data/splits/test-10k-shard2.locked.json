@@ -1,0 +1,37 @@
+{
+  "n_test": 2800,
+  "sha256_questions": "73d30cac3b6f8290bab89cde027fcdcd4568e62fc8e62263e88e4ca3bb9a0e12",
+  "sha256_file": "e6e946700fb6ea84f3edccc3d7a3193b9f84de3dbadadbfcaa7764d03f2baa42",
+  "source_lock": {
+    "split": "test-10k-shard2",
+    "rows": 2800,
+    "sha256": "1925e72ea09b3513e44b6ac4452d78700a8f2b10e7fbdb57372658e46344b9ae",
+    "recipe": "sorted normalized (question + \" || \" + answer) strings, newline-joined, UTF-8",
+    "families": {
+      "tds_computation": 6889,
+      "threshold_application": 235,
+      "code_lookup": 1456,
+      "slab_tax_chain": 273,
+      "threshold_probe": 95,
+      "gst_interest_s50": 248,
+      "section_map": 70,
+      "gst_value_additions": 97,
+      "code_to_nature": 178,
+      "gst_deadline": 18,
+      "capital_gains_ltcg": 48,
+      "section_map_rev": 56,
+      "section_to_code": 182,
+      "company_law_computation": 48,
+      "presumptive_check": 24,
+      "due_date": 30,
+      "winnings": 40,
+      "tds_grid": 16,
+      "company_law_deadline": 6
+    },
+    "gold_sha": "1925e72ea09b3513e44b6ac4452d78700a8f2b10e7fbdb57372658e46344b9ae",
+    "grader_sha": null,
+    "benchmark_id": "73d30cac3b6f8290",
+    "generation_seed": 10000,
+    "note": "comprehensive eval; golds derived from tables.db + scripts/v4_math.py"
+  }
+}
