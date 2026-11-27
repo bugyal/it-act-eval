@@ -1,0 +1,132 @@
+{
+  "runs": [
+    {
+      "path": "eval/results/claude-haiku-4-5-20261007-024501.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "claude-haiku-4-5-20261007-024501",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Partial or error-heavy CLI evidence; do not treat as a completed baseline or combine retries by best verdict.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/claude-opus-4-6-20261007-100805.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "claude-opus-4-6-20261007-100805",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Partial or error-heavy CLI evidence; do not treat as a completed baseline or combine retries by best verdict.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/claude-opus-4-6-20261007-130018.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "claude-opus-4-6-20261007-130018",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Partial or error-heavy CLI evidence; do not treat as a completed baseline or combine retries by best verdict.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/claude-sonnet-4-5-20261007-130014.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "claude-sonnet-4-5-20261007-130014",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Partial or error-heavy CLI evidence; do not treat as a completed baseline or combine retries by best verdict.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/deepseek-v4.1-flash-20261006-135947.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "deepseek-v4.1-flash-20261006-135947",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/glm-5.3-flash-merged.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "glm-5.3-flash-merged",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Pre-existing merged artifact; not a single run and unsuitable for head-to-head ranking.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/glm-5.3-merged.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "glm-5.3-merged",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Pre-existing merged artifact; not a single run and unsuitable for head-to-head ranking.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/gpt-oss_120b-20261006-174542.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "gpt-oss_120b-20261006-174542",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/gpt-oss_20b-20261006-141746.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "gpt-oss_20b-20261006-141746",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/karsastra-4b-20261007-034646.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "karsastra-4b-20261007-034646",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/qwen3.5_4b-20261006-155930.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "qwen3.5_4b-20261006-155930",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run. Earlier run retained independently; do not pool with the later run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/qwen3.5_4b-20261006-160655.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "qwen3.5_4b-20261006-160655",
+      "note": "Historical endpoint/CLI alias; not independently authenticated. Per-file recount, not a fresh inference run.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/recovered/karsastra-v2e-locked-20261007.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "karsastra-v2e-locked-20261007",
+      "note": "Recovered SFT evaluation on original 785-question gold snapshot. Four reasoned and five ungradable rows excluded from graded denominator.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/recovered/karsastra-v42-locked-20261011.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "karsastra-v42-locked-20261011",
+      "note": "Recovered SFT evaluation on original 785-question gold snapshot. Four reasoned and five ungradable rows excluded from graded denominator.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/recovered/karsastra-v44-locked-20261013.jsonl",
+      "split": "data/splits/test-2026-10-11.jsonl",
+      "lock": "data/splits/test-2026-10-11.locked.json",
+      "label": "Karsastra v4.4 \u2014 October 13 extended-worker verdicts",
+      "note": "785/785 graded under the later keyword/status worker grading protocol; not the original 776-gradeable protocol. Recovered from completed Kaggle output, all questions/golds match revised snapshot.",
+      "historical": true
+    },
+    {
+      "path": "eval/results/recovered/karsastra-v44-locked-20261013-strict-v1.jsonl",
+      "split": "data/splits/test.jsonl",
+      "lock": "data/splits/test.locked.json",
+      "label": "Karsastra v4.4 — offline strict-v1 regrade of October 13 responses",
+      "note": "Derived offline from karsastra-v44-locked-20261013.jsonl using original public golds and unchanged Go strict-v1 grader. Not a new inference run or an independent sample.",
+      "historical": true
+    }
+  ]
+}

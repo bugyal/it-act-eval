@@ -1,75 +1,86 @@
-# itact-785
+# IT Act Eval
 
-**Can LLMs cite India's new Income-tax Act? We locked 785 compliance tasks before running any model. Best frontier model: 30.2% strict accuracy. On the four-part task a notice-reply draft actually needs — code + section + rate + due-date, all correct — every model scored 0%.**
+Versioned evaluation datasets, deterministic grading, and auditable historical results for Indian tax-law compliance. Formerly **itact-785**; canonical repository: [bugyal/it-act-eval](https://github.com/bugyal/it-act-eval).
 
-itact-785 is a locked, sha256-verified evaluation set and grading harness for applied Indian tax-law compliance under the **Income-tax Act, 2025** (in force 1 April 2026, replacing the 1961 Act). Unlike US-bar-style legal QA, every task requires emitting exact machine-checkable entities: TDS payment codes (1001–1092), section references, rates, thresholds, due dates, and the governing Act on the 1-Apr-2026 boundary.
+**Updated November 27, 2026:** recovered later Karsastra SFT evaluations, preserved the original public benchmark, added a corrected-gold snapshot, and replaced stale headline claims with per-run evidence. This is an artifact audit, **not a new model-inference sweep or independent legal review**.
 
-## Headline results (strict entity-match, no partial credit, no LLM judge)
+## Recovered Karsastra results
 
-| Model | Backend | Graded | Strict accuracy |
-|---|---|---|---|
-| glm-5.3-flash | z.ai | 774 | **30.2%** |
-| glm-5.3 | z.ai | 776 | 26.5% |
-| claude-haiku-4-5 | claude CLI | 548 | 32.5% |
-| claude-sonnet-4-5 | claude CLI | 87 | 96.6%* |
-| deepseek-v4.1-flash | Ollama Cloud | 776 | 11.6% |
-| qwen3.5:4b (raw) | local | 776 | 11.6% |
-| gpt-oss:20b | Ollama Cloud | 776 | 7.0% |
-| gpt-oss:120b | Ollama Cloud | 776 | 2.4% |
-| karsastra-4b (fine-tuned 4B) | local | 776 | **45.7%** |
-| claude-opus | claude CLI | in flight | — |
+The original benchmark has 785 questions about the Income-tax Act, 2025 transition: payment codes, section/form mappings, rates, thresholds, dates, and compliance bundles. Its original grader scores 776 questions, excluding four reasoned and five ungradable records.
 
-\* sonnet-4-5 and haiku-4-5 legs are partial runs in progress; numbers will move. claude-opus leg currently failing on CLI errors — re-running.
+| Historical model/run | Gold / grading protocol | Pass / graded | Accuracy |
+|---|---|---:|---:|
+| Initial Karsastra 4B, October 7 | Original public snapshot / original grader | 355 / 776 | 45.7% |
+| Karsastra v2e, October 7 | Original public snapshot / original grader | 469 / 776 | 60.4% |
+| Karsastra v4.2, October 11 | Original public snapshot / original grader | 565 / 776 | 72.8% |
+| Karsastra v4.4, October 13 | Corrected snapshot / extended worker grader | 702 / 785 | 89.4% |
 
-Three observations that matter:
+These are historical artifacts, not a controlled experiment isolating training changes. **The last row uses a different gold/grader protocol.** Regrading its saved responses against the original public golds with the preserved original strict grader gives **698/776 (89.9%)**. That is an offline regrade of the same answers, not another model run.
 
-1. **Cheap beats flagship.** glm-5.3-flash (30.2%) outperforms its own flagship glm-5.3 (26.5%). Scale doesn't help — the 2025 Act simply isn't in any training distribution yet.
-2. **Three product-defining zeros.** TDS payment-code lookup: 0/107 on glm legs (a model *invented "payment code: 94"*); deepseek recited the **repealed 1961-Act ITNS-281 code table** for a July-2026 question. Old→new section mapping: 0–32%. Four-part ICAI-style compliance: **0/99 on every model.**
-3. **A fine-tuned 4B beats every frontier model.** karsastra-4b (Qwen3.5-4B fine-tuned on mapping tables) scores 45.7% — training data, not scale, is the lever. Its remaining failures are lookup near-misses, exactly what a verified-table layer exists to catch.
+See the [per-file audit](docs/results-audit.md), [machine-readable evidence](docs/results-audit.json), and [import provenance](docs/import-provenance.json). Later raw outputs are under `eval/results/recovered/`.
 
-## What's here
+### Broader holdouts tell a different story
 
-```
-data/splits/test.jsonl        785 locked tasks (questions + gold answers + provenance)
-data/splits/test.locked.json  sha256 manifest (14ffaa7de68272d0…) — tamper check
-eval/                         Go harness: runner, strict grader, tests, run scripts
-eval/results/                 per-model answer JSONLs (raw, unedited) + score tables
-docs/p2-findings-report.md    full findings report
-```
+| Experiment using the v4.4 model | Recorded strict result | Qualification |
+|---|---:|---|
+| `test-v45`, 185 questions | 93/185 — 50.27% | Same total in two separate runs; **not** a v4.5-trained model |
+| `test-10k`, 10,009 questions | 2,151/10,002 graded — 21.51% | Seven rubric-ungradable rows; 2,151/10,009 = 21.49% over all rows |
 
-Task families: boundary rules (which Act governs across 1 Apr 2026), code lookup, old→new section mapping, code→nature, due dates, form crosswalks, rate/threshold applications, TDS computations, and 99 four-part ICAI-style compliance bundles.
+These holdouts have different distributions and broader computation/GST/company-law coverage. They are **not directly comparable** to the original mapping benchmark. An archived final-answer-tolerant analysis reports 6,716/10,009 (67.1%); that changes the grading policy and is **not** the strict score or a regrade newly reproduced here.
 
-## Method (the part that makes this defensible)
+[Aggregate evidence and source fingerprints](docs/heldout-results.json) are published without releasing private holdout questions, golds, or responses. Those holdout scores therefore cannot be independently reproduced from this public checkout. No completed, verified v4.5-model evaluation was recovered.
 
-- **Locked set**: 785 tasks, sha256-verified at every run start. No model saw a task before scoring.
-- **Strict grading**: entity-extraction exact match; a task passes only with **all** gold entities present. No partial credit, no LLM-as-judge.
-- **Grader validated two ways**: gold self-extraction (785/785 parse) and mutated-gold rejection (grader discriminates).
-- **Identical protocol per model**: temperature 0, same prompt prefix, same token limits.
-- **Independent cross-check**: grader logic ported and re-run in inspect-ai, zero verdict diffs on shared records. see eval/crosscheck/
+## What happened to the frontier-model headline?
 
-## Reproduce
+The old “best frontier model: 30.2%” and “every model scores zero on compliance bundles” claims are withdrawn as current conclusions. The early table mixed completed traversals, partial CLI samples, error-heavy attempts, and merged artifacts. Later Claude outputs also have protocol/era and potential test-file leakage concerns. There is no defensible completed-run frontier ranking in this refresh.
+
+The archived GLM-5.3-flash merged file records 234/774, but is not a full 785-row run. The old Sonnet 96.6% figure was a partial sample; one underlying file is truncated. See [the refresh audit](docs/refresh-audit.md). Model names in raw files are historical endpoint/CLI aliases, **not independently authenticated provider identities**.
+
+## Reproduce offline
+
+Requires Python 3.11+ and the Go version in `eval/go.mod`. No API key or GPU is needed.
 
 ```bash
-cd eval
-go build ./...
-./run_sweep.sh   # or run_finish_legs.sh — writes per-model JSONLs to eval/results/
+git clone https://github.com/bugyal/it-act-eval.git
+cd it-act-eval
+python3 -m unittest discover -s tests -v
+python3 scripts/audit.py --manifest data/audit-manifest.json \
+  --json-out docs/results-audit.json --md-out docs/results-audit.md --check
+(cd eval && GOWORK=off go test ./...)
 ```
 
-The grader refuses to run unless the test-set sha256 matches `test.locked.json` (override with `-allow-unlocked` for your own variants — but then say so).
+To regenerate the audit, use the same command without `--check`. It checks the question lock, task IDs, matching question/gold content, and hashes, then recounts stored verdicts **per file**. It does not pick the best response from retries, authenticate models, or independently validate grading verdicts.
 
-**Run your own model?** Add a backend in `eval/`, run the same 785, and open a PR with your JSONL. Numbers must be grader-generated, not hand-tallied — that's the whole point.
+For fresh inference and offline regrading, see [the harness instructions](eval/README.md). Supply your own endpoint and credentials explicitly; inference may cost money. The legacy pooled `-report` output is not the audited results table.
 
-## Limitations (read before citing)
+## Repository map
 
-- Measures **factual mapping correctness** (codes, sections, rates, boundaries), not legal judgement or prose quality.
-- Strict match means a semantically-fine answer with one wrong digit fails. We consider that a feature: in tax compliance, one wrong digit is a wrong challan.
-- Scored only models we could run under existing subscriptions; some commercial APIs are absent (documented in findings report). Invite: run your keys, PR your numbers.
-- Indian central law only (income tax/ITNS codes); GST citations out of scope for v1.
+```text
+data/splits/test.jsonl                    Original public 785-task snapshot, unchanged
+data/splits/test.locked.json              Original question lock, unchanged
+data/splits/test-2026-10-11.jsonl          Same questions, five gold/type corrections
+data/splits/test-2026-10-11.locked.json    Recovered corrected-snapshot metadata
+data/audit-manifest.json                  Explicit run-to-snapshot selection
+eval/                                    Original Go grader, runner, tests, offline regrade
+eval/results/recovered/                  Later original-benchmark raw outputs
+scripts/audit.py                          Offline per-file integrity/verdict audit
+docs/results-audit.{json,md}              Reproducible audit output
+docs/heldout-results.json                 Aggregate-only private holdout evidence
+docs/protocols.md                         Versions, denominators, grading limitations
+docs/refresh-audit.md                     Recovery findings and exclusions
+```
 
-## Provenance
+## Interpretation and limitations
 
-Gold answers are derived from Gazette-notified sources: the Income-tax Act 2025 (as amended by Finance Act 2026), notified form crosswalks, and CBDT transition FAQs. Each task carries a `source_row` with its source URL. Curated by [Prasthana Lab](https://github.com/bugyal).
+- The original split is **within-fact / phrasing-held-out**, not fact-held-out: models train on the same statutory facts under different wording. See [split policy](data/splits/README_split_policy.md).
+- Questions and answers have been public since October 7. A lock does not prove that later models never saw them; no blanket contamination-free claim is made.
+- The question hash does **not** lock golds or grader code. Corrected golds are a separate snapshot; the audit also hashes complete files.
+- Entity-presence and keyword heuristics can accept contradictions or miss meaningful errors. They do not measure persuasive legal drafting, case-law research, professional judgment, or real-client reliability. [Detailed limitations](docs/protocols.md).
+- Golds carry the original source metadata. This refresh has not independently revalidated current law, source licensing, or every gold answer. This is not tax advice.
+- Training data, weights, private customer information, and unreleased holdout questions are outside this refresh.
 
-## License
+## Historical reports and license
 
-Dataset, results, and docs: **CC BY-4.0**. Harness code: Apache-2.0 — free for research and evaluation; if your commercial product embeds the drafting engine built on this data, we'd like to hear from you.
+The [P2 report](docs/p2-findings-report.md) and [old aggregate table](eval/results/baseline_scores.md) are retained with supersession notices, not silently presented as current results.
+
+Existing dataset, results, and docs: [CC BY-4.0](LICENSE). Harness and new audit code: [Apache-2.0](eval/LICENSE-CODE). Curated by [Prasthana Lab](https://github.com/bugyal).

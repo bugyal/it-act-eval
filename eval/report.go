@@ -22,6 +22,7 @@ type ResultRecord struct {
 	Gold           string    `json:"gold"`
 	Model          string    `json:"model"`
 	Backend        string    `json:"backend"`
+	GraderVersion  string    `json:"grader_version,omitempty"`
 	RawResponse    string    `json:"raw_response"`
 	ExtractedGold  string    `json:"extracted_gold"`
 	ExtractedModel string    `json:"extracted_model"`
@@ -86,7 +87,9 @@ type typeStat struct {
 	passed int
 }
 
-// BuildReport scans result files matching prefix and renders the baseline table.
+// BuildReport merges result files by model and first task ID. It is a legacy
+// convenience report, NOT an audit leaderboard: it can mix runs, split versions,
+// and grader versions. Audit a specific file/split independently instead.
 func BuildReport(dir, outFile string) error {
 	entries, err := os.ReadDir(dir)
 	if err != nil {
@@ -160,6 +163,7 @@ func BuildReport(dir, outFile string) error {
 	var b strings.Builder
 	b.WriteString(fmt.Sprintf("# Baseline scores — Tax-Model locked test set (%d tasks)\n\n", taskCount(dir)))
 	b.WriteString(fmt.Sprintf("Generated: %s\n\n", time.Now().Format("2006-01-02 15:04")))
+	b.WriteString("**Legacy convenience report, not an audit leaderboard.** This merges result files by model and keeps the first task ID; it does not separate runs, split versions, or grader versions.\n\n")
 	b.WriteString("Strict accuracy = all required entities present (multi_part: all parts). ")
 	b.WriteString("Errors (API failures after retries) count as failures in acc_all. ")
 	b.WriteString("`reasoned` tasks (rubric pending) are excluded from both denominators.\n\n")

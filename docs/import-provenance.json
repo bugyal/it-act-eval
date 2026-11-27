@@ -1,0 +1,45 @@
+{
+  "source_repository": "Karsastra tax-model research workspace",
+  "source_git_commit": "bfebc04",
+  "refresh_date": "2026-11-27",
+  "files": [
+    {
+      "source_path": "data/splits/test.jsonl",
+      "path": "data/splits/test-2026-10-11.jsonl",
+      "sha256": "c44de038df8c9037221884b4db45b94eb3bb4573cb179f70ca153aba70bd44ba",
+      "bytes": 498367
+    },
+    {
+      "source_path": "data/splits/test.locked.json",
+      "path": "data/splits/test-2026-10-11.locked.json",
+      "sha256": "9b349624dfdab4d31404d5c21fa0dad9c12bf9dcf7eb298b36575159a2e5b616",
+      "bytes": 1099
+    },
+    {
+      "source_path": "eval/results/v2e/karsastra-4b-20261007-072136.jsonl",
+      "path": "eval/results/recovered/karsastra-v2e-locked-20261007.jsonl",
+      "sha256": "6c35f95c7a98145b65402fb3421aeb7c7cbc9415c29fca9d3bd68da610f36e0b",
+      "bytes": 574902
+    },
+    {
+      "source_path": "eval/results/karsastra-4b-v42-20261011-144101.jsonl",
+      "path": "eval/results/recovered/karsastra-v42-locked-20261011.jsonl",
+      "sha256": "d016c1b4ca50821137f97b7d462bb543c57564495d8ed37377694108fbeb9e5b",
+      "bytes": 587021
+    },
+    {
+      "source_path": "Kaggle ashishbhatt1st/v44-eval-4b-kg3/results/karsastra-4b-v44-20261013-035249.jsonl",
+      "path": "eval/results/recovered/karsastra-v44-locked-20261013.jsonl",
+      "sha256": "f40f59c0e35af55a40642c2befa9ea672582dc9bf2a57dfab9cc11639df0beb0",
+      "bytes": 576978
+    },
+    {
+      "source_path": "eval/results/recovered/karsastra-v44-locked-20261013.jsonl",
+      "path": "eval/results/recovered/karsastra-v44-locked-20261013-strict-v1.jsonl",
+      "sha256": "110dcb1098cf2c1805401e897af76df740d85b53453901009cc63f379b5c8675",
+      "bytes": 598426,
+      "derivation": "From eval/: GOWORK=off go run ./cmd/tax-eval -repo .. -split test -regrade results/recovered/karsastra-v44-locked-20261013.jsonl -regrade-out results/recovered/karsastra-v44-locked-20261013-strict-v1.jsonl",
+      "grader": "strict-v1"
+    }
+  ]
+}

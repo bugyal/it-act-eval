@@ -1,0 +1,17 @@
+{
+ "locked_at": "2026-10-05",
+ "n_test": 785,
+ "sha256_questions": "14ffaa7de68272d02371e2cc31a7afddce74c25f45458722818b6e61bb62ab81",
+ "policy": "test.locked.json records the sha256 of sorted test questions; regeneration with a different seed or data update must not silently change the test set. decontaminate_split.py refuses to overwrite a locked test set unless --force.",
+ "gold_relock": {
+  "at": "2026-10-11",
+  "questions_changed": 0,
+  "golds_changed": 5,
+  "changes": "sm:- (x2) answers rewritten to section_no_equivalent form; sm:132/132A (x2) + sm:115JAA/115JD answers rewritten to gradeable section_status text; answer_type updated; questions byte-identical",
+  "grader": "kaggle/bundle-src/kaggle-taxeval/eval/grade.go extended: reasoned keyword-rubric (rule:TR2/TR3/TR12/TR14), section_status + section_no_equivalent classes",
+  "audit": "docs/analysis/v42-eval-gold-audit.md"
+ },
+ "gold_sha": "607c63ccdd97da29edc22389f20cb8ab09815d5d184b68830681177d62d9c7ed",
+ "grader_sha": "578209defa4f83be40fe9b872d2b162de0470e5978ff680e1ef88d259303b9f8",
+ "benchmark_id": "c74b125fc82fcb9d"
+}

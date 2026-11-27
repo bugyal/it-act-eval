@@ -1,4 +1,6 @@
 # P2 Findings Report — Frontier AI vs the 2025 Income-tax Act
+
+> **Historical report — superseded, not a current leaderboard.** This October 6 snapshot predates later Karsastra SFT runs and Claude results. Its claims that every frontier model scores ≤30.2%, every model scores zero on compliance bundles, and no task was ever seen before scoring must not be reused as current conclusions. Model labels are recorded endpoint/CLI aliases, not independently verified provider identities. Some archived runs are partial, errored, or truncated; protocols and denominators differ. See the [current overview](../README.md) and [refresh audit](refresh-audit.md). The original text below is retained for research history.
 **Tax-Model P2 baseline sweep · completed 2026-10-06 · locked 785-task set (sha 14ffaa7d…)**
 
 The correctness report this project was built to produce. One line summary:
