@@ -22,6 +22,56 @@ The split names are dataset identifiers, not model versions. In particular, `tes
 
 See [dataset details and provenance](docs/datasets.md) for schemas, locks, the four 10k shards, and known limitations. These are now **public benchmarks**, not secret holdouts for future blind evaluations.
 
+## Model evaluation results
+
+Scores below come from the published response files. **Accuracy = passed / graded**; it excludes provider errors and ungraded answers. Click a model/run to inspect its raw output. Model names retain the recorded endpoint/CLI labels; these labels are not independent verification of provider model identity.
+
+### Original benchmark: complete response sets
+
+Each row covers all **785 questions**, with **zero provider errors**, **776 graded answers** and **nine ungraded answers**, using the original gold snapshot. The v4.4 row is an offline `strict-v1` regrade of its saved responses, not an additional inference run. These historical runs were not a controlled experiment with identical serving and generation settings.
+
+| Model / run | Passed / graded | Accuracy |
+|---|---:|---:|
+| [deepseek-v4.1-flash](eval/results/deepseek-v4.1-flash-20261006-135947.jsonl) | 90 / 776 | 11.60% |
+| [gpt-oss_120b](eval/results/gpt-oss_120b-20261006-174542.jsonl) | 19 / 776 | 2.45% |
+| [gpt-oss_20b](eval/results/gpt-oss_20b-20261006-141746.jsonl) | 54 / 776 | 6.96% |
+| [Karsastra 4B — initial](eval/results/karsastra-4b-20261007-034646.jsonl) | 355 / 776 | 45.75% |
+| [qwen3.5_4b — run 1](eval/results/qwen3.5_4b-20261006-155930.jsonl) | 90 / 776 | 11.60% |
+| [qwen3.5_4b — run 2](eval/results/qwen3.5_4b-20261006-160655.jsonl) | 90 / 776 | 11.60% |
+| [Karsastra v2e](eval/results/recovered/karsastra-v2e-locked-20261007.jsonl) | 469 / 776 | 60.44% |
+| [Karsastra v4.2](eval/results/recovered/karsastra-v42-locked-20261011.jsonl) | 565 / 776 | 72.81% |
+| [Karsastra v4.4 — offline strict-v1 regrade](eval/results/recovered/karsastra-v44-locked-20261013-strict-v1.jsonl) | 698 / 776 | 89.95% |
+
+### Original benchmark: partial, error-heavy and merged records
+
+These results are included for transparency, **not ranked against complete runs**. Coverage counts all emitted task records, including errors; the score uses only graded answers. A high percentage on a small surviving subset is not a full-benchmark score. Merged archives have an unreconstructed response-selection policy and are not single runs.
+
+| Model / run | Recorded tasks / 785 | Provider errors | Passed / graded | Accuracy on graded subset | Status |
+|---|---:|---:|---:|---:|---|
+| [claude-haiku-4-5](eval/results/claude-haiku-4-5-20261007-024501.jsonl) | 548 / 785 | 0 | 178 / 548 | 32.48% | Partial run |
+| [claude-opus-4-6 — run 1](eval/results/claude-opus-4-6-20261007-100805.jsonl) | 785 / 785 | 760 | 18 / 25 | 72.00% | Error-heavy |
+| [claude-opus-4-6 — run 2](eval/results/claude-opus-4-6-20261007-130018.jsonl) | 785 / 785 | 757 | 28 / 28 | 100.00% | Error-heavy |
+| [claude-sonnet-4-5](eval/results/claude-sonnet-4-5-20261007-130014.jsonl) | 660 / 785 | 555 | 97 / 105 | 92.38% | Error-heavy; partial coverage |
+| [glm-5.3-flash — merged archive](eval/results/glm-5.3-flash-merged.jsonl) | 774 / 785 | 0 | 234 / 774 | 30.23% | Merged archive; not a single run |
+| [glm-5.3 — merged archive](eval/results/glm-5.3-merged.jsonl) | 776 / 785 | 0 | 206 / 776 | 26.55% | Merged archive; not a single run |
+
+A separate truncated Sonnet archive is excluded because it cannot be parsed reliably. We do not pool retries or select whichever response passed. See [audit exclusions](docs/refresh-audit.md#archive-exclusions-and-downgraded-claims).
+
+### Corrected and expanded benchmarks
+
+These use different datasets and/or historical worker grading rules, so their percentages must not be treated as improvements or regressions against the original table. All rows below have complete recorded coverage and zero provider errors.
+
+| Model / run | Dataset / grading protocol | Recorded tasks | Passed / graded | Accuracy | Ungraded |
+|---|---|---:|---:|---:|---:|
+| [Karsastra v4.4](eval/results/recovered/karsastra-v44-locked-20261013.jsonl) | Corrected 785 / extended worker | 785 | 702 / 785 | 89.43% | 0 |
+| [Karsastra v4.4 — run 1](eval/results/published/karsastra-run1.jsonl) | Challenge (`test-v45`) / recorded worker verdicts | 185 | 93 / 185 | 50.27% | 0 |
+| [Karsastra v4.4 — run 2](eval/results/published/karsastra-run2-acct2.jsonl) | Challenge (`test-v45`) / recorded worker verdicts | 185 | 93 / 185 | 50.27% | 0 |
+| Karsastra v4.4 ([four-shard audit](docs/results-audit.md)) | 10k / recorded worker verdicts | 10,009 | 2,151 / 10,002 | 21.51% | 7 |
+
+10k raw responses: [shard 0](eval/results/published/karsastra-shard0.jsonl), [shard 1](eval/results/published/karsastra-shard1.jsonl), [shard 2](eval/results/published/karsastra-shard2.jsonl), [shard 3](eval/results/published/karsastra-shard3.jsonl). The four shards cover each of the 10,009 questions exactly once; they are not retries. The two challenge-set runs remain separate. `test-v45` names a dataset, not a v4.5-trained model.
+
+The [full per-file audit](docs/results-audit.md), [machine-readable counts](docs/results-audit.json), and [grading protocols](docs/protocols.md) provide coverage, fingerprints and interpretation details.
+
 ## Quick start: inspect existing results
 
 You need Git and Python 3.11+. This path makes **no model calls**, needs no GPU or API key, and does not incur inference charges.
@@ -101,22 +151,6 @@ The included Go grader (`strict-v1`) uses deterministic checks for expected amou
 - Matching expected entities does not establish that an explanation is legally correct. The grader may accept contradictory text or reject a reasonable paraphrase.
 
 Dataset locks detect changes to released snapshots; newer release locks cover the complete file, including reference answers. Preserve snapshots and version corrections rather than editing a benchmark in place. [Grading protocols and limitations →](docs/protocols.md)
-
-## Historical Karsastra results
-
-These are saved evaluations of Karsastra, a fine-tuned model. They are not a controlled comparison of all models or a fresh inference sweep.
-
-| Model/run | Dataset and protocol | Passed / graded |
-|---|---|---:|
-| Initial Karsastra 4B | Original 785 / original grader | 355 / 776 |
-| Karsastra v2e | Original 785 / original grader | 469 / 776 |
-| Karsastra v4.2 | Original 785 / original grader | 565 / 776 |
-| Karsastra v4.4 | Corrected 785 / extended worker | 702 / 785 |
-| Karsastra v4.4, same responses regraded offline | Original 785 / `strict-v1` | 698 / 776 |
-| Karsastra v4.4 | Challenge set (`test-v45`) / recorded worker verdicts | 93 / 185 in each of two separate runs |
-| Karsastra v4.4 | 10k benchmark / recorded worker verdicts, four disjoint shards | 2,151 / 10,002; seven ungraded rows |
-
-**Compare like with like:** the broader datasets have different task distributions, and the later worker is not the original grader. Never select the best response across retries and call the union a single run. The [per-file audit](docs/results-audit.md), [broader-run summary](docs/heldout-results.json), and [protocol notes](docs/protocols.md) explain the denominators.
 
 ## Repository guide
 
