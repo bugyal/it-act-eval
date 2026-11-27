@@ -1,5 +1,5 @@
 {
-  "scope": "Aggregate evidence for unreleased holdouts. Question/gold/response rows intentionally not published. Counts recomputed from recovered local artifacts; this is not a new inference run or independently public-reproducible result. v45 here names the TEST SPLIT, not a v4.5 model. Model version attribution follows archived run documentation; raw rows say karsastra.",
+  "scope": "Historical aggregate evidence for the now-public expanded benchmarks. Questions, golds and the underlying two test-v45 runs and four 10k result shards are published; see docs/dataset-release.json and docs/results-audit.json for paths, fingerprints and per-file recounts. This is not a new inference run or independent reproduction of the historical worker grader. v45 here names the TEST SPLIT, not a v4.5 model. Model version attribution follows archived run documentation; raw rows say karsastra.",
   "audited_on": "2026-11-27",
   "runs": [
     {

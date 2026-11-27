@@ -1,0 +1,15 @@
+{
+  "n_test": 85,
+  "sha256_questions": "454679db247b03a515e736a9f5f87df02151fc757d515882ff192369b90a22ff",
+  "sha256_file": "506916c523d76803a2e75b08deccf1434b3a92371450a9fa3850f1c4fc7785d3",
+  "source_lock": {
+    "locked_at": "2026-10-10 18:18",
+    "n_test": 85,
+    "sha256_questions": "454679db247b03a515e736a9f5f87df02151fc757d515882ff192369b90a22ff",
+    "policy": "gradable-typed hindi v2: amount/yes_no/days only; computed-gold chain drops free-text-only rows; see v42-hindi-eval-slice.md",
+    "relock_note": "2026-10-11: previous manifest sha (e5370cd2...) unreproducible with the sorted-questions recipe used by test/test-v2 locks; recomputed with the canonical recipe (sha256 of sorted questions joined by newline). Question SET unchanged (85 rows, file mtime 2026-10-10 18:xx, untouched).",
+    "gold_sha": "fe6d59ef5b3413319d6db7218eb7d83fdf379c040bf296cc8f161ed25854bcb5",
+    "grader_sha": "578209defa4f83be40fe9b872d2b162de0470e5978ff680e1ef88d259303b9f8",
+    "benchmark_id": "c862e3a9a9575c68"
+  }
+}

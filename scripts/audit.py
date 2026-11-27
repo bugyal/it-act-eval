@@ -79,8 +79,15 @@ def split_info(root, split, lock):
         raise AuditError(f"LOCK MISMATCH: {path} sha256 {digest} != {lock_path} {locked['sha256_questions']}")
     if "n_test" in locked and (type(locked["n_test"]) is not int or locked["n_test"] != len(tasks)):
         raise AuditError(f"{lock_path}: n_test does not match split count")
+    file_digest = sha256(path.read_bytes())
+    if "sha256_file" in locked:
+        expected = locked["sha256_file"]
+        if not isinstance(expected, str) or len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected):
+            raise AuditError(f"{lock_path}: invalid sha256_file (expected 64 lowercase hex characters)")
+        if expected != file_digest:
+            raise AuditError(f"LOCK MISMATCH: {path} sha256_file {file_digest} != {lock_path} {expected}")
     return tasks, {"path": split, "sha256_questions": digest,
-                   "sha256_split": sha256(path.read_bytes()), "lock": lock,
+                   "sha256_split": file_digest, "lock": lock,
                    "sha256_lock": sha256(lock_path.read_bytes()), "tasks": len(tasks)}
 
 

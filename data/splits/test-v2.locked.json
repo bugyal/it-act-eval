@@ -1,0 +1,22 @@
+{
+  "n_test": 199,
+  "sha256_questions": "ee85a52818c610409b357048fba15d758afae26303d8ad7e8c2c3bc19ff64fc9",
+  "sha256_file": "7f1ed1920fe09d37cd298e1fbd4822fe23a00e908c6cc3e23b68c739e6b27647",
+  "source_lock": {
+    "locked_at": "2026-10-07",
+    "n_test": 199,
+    "sha256_questions": "ee85a52818c610409b357048fba15d758afae26303d8ad7e8c2c3bc19ff64fc9",
+    "policy": "Eval v2: generated from verified Act-2025 rules with held-out phrasings/numbers; facts intentionally shared with train_ft_v2 (measures application skill). 8-gram decontaminated against train_ft_v2.jsonl questions.",
+    "gold_relock": {
+      "at": "2026-10-11",
+      "questions_changed": 0,
+      "golds_changed": 2,
+      "changes": "v2:calc_gross_salary:0/1 answers corrected to s.156 marginal-relief values (Rs 1,000 / Rs 45,000); questions unchanged",
+      "grader": "kaggle/bundle-src/kaggle-taxeval/eval/grade.go extended: reasoned keyword-rubric (rule:TR2/TR3/TR12/TR14), section_status + section_no_equivalent classes",
+      "audit": "docs/analysis/v42-eval-gold-audit.md"
+    },
+    "gold_sha": "d6e999733b5133b4c8fe379d683cb34886f0c5b9b93b4e7a27221406adb763e2",
+    "grader_sha": "578209defa4f83be40fe9b872d2b162de0470e5978ff680e1ef88d259303b9f8",
+    "benchmark_id": "070308c13b5b467f"
+  }
+}

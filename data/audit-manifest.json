@@ -116,7 +116,7 @@
       "path": "eval/results/recovered/karsastra-v44-locked-20261013.jsonl",
       "split": "data/splits/test-2026-10-11.jsonl",
       "lock": "data/splits/test-2026-10-11.locked.json",
-      "label": "Karsastra v4.4 \u2014 October 13 extended-worker verdicts",
+      "label": "Karsastra v4.4 — October 13 extended-worker verdicts",
       "note": "785/785 graded under the later keyword/status worker grading protocol; not the original 776-gradeable protocol. Recovered from completed Kaggle output, all questions/golds match revised snapshot.",
       "historical": true
     },
@@ -127,6 +127,54 @@
       "label": "Karsastra v4.4 — offline strict-v1 regrade of October 13 responses",
       "note": "Derived offline from karsastra-v44-locked-20261013.jsonl using original public golds and unchanged Go strict-v1 grader. Not a new inference run or an independent sample.",
       "historical": true
+    },
+    {
+      "path": "eval/results/published/karsastra-shard0.jsonl",
+      "split": "data/splits/test-10k-shard0.jsonl",
+      "lock": "data/splits/test-10k-shard0.locked.json",
+      "label": "karsastra-shard0 — test-10k-shard0",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
+    },
+    {
+      "path": "eval/results/published/karsastra-shard1.jsonl",
+      "split": "data/splits/test-10k-shard1.jsonl",
+      "lock": "data/splits/test-10k-shard1.locked.json",
+      "label": "karsastra-shard1 — test-10k-shard1",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
+    },
+    {
+      "path": "eval/results/published/karsastra-shard2.jsonl",
+      "split": "data/splits/test-10k-shard2.jsonl",
+      "lock": "data/splits/test-10k-shard2.locked.json",
+      "label": "karsastra-shard2 — test-10k-shard2",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
+    },
+    {
+      "path": "eval/results/published/karsastra-shard3.jsonl",
+      "split": "data/splits/test-10k-shard3.jsonl",
+      "lock": "data/splits/test-10k-shard3.locked.json",
+      "label": "karsastra-shard3 — test-10k-shard3",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
+    },
+    {
+      "path": "eval/results/published/karsastra-run1.jsonl",
+      "split": "data/splits/test-v45.jsonl",
+      "lock": "data/splits/test-v45.locked.json",
+      "label": "karsastra-run1 — test-v45",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
+    },
+    {
+      "path": "eval/results/published/karsastra-run2-acct2.jsonl",
+      "split": "data/splits/test-v45.jsonl",
+      "lock": "data/splits/test-v45.locked.json",
+      "label": "karsastra-run2-acct2 — test-v45",
+      "historical": true,
+      "note": "Recorded historical worker verdicts, not a fresh inference or strict-v1 regrade. Model attribution follows archived documentation. Disjoint 10k shards form one traversal; test-v45 retries remain separate runs."
     }
   ]
 }

@@ -115,6 +115,39 @@ class AuditTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("LOCK MISMATCH", result.stderr)
 
+    def test_full_file_lock_rejects_gold_only_mutation(self):
+        split = self.root / "split.jsonl"
+        lock = json.loads((self.root / "split.locked.json").read_text())
+        lock["sha256_file"] = hashlib.sha256(split.read_bytes()).hexdigest()
+        self.write("split.locked.json", json.dumps(lock))
+        valid = self.call()
+        self.assertEqual(valid.returncode, 0, valid.stderr)
+        self.assertEqual(json.loads(valid.stdout)["runs"][0]["split"]["sha256_questions"], lock["sha256_questions"])
+        self.tasks[0]["answer"] = "changed gold"
+        self.write("split.jsonl", "".join(json.dumps(t) + "\n" for t in self.tasks))
+        result = self.call()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("sha256_file", result.stderr)
+
+    def test_full_file_lock_rejects_invalid_hash_values(self):
+        lock = json.loads((self.root / "split.locked.json").read_text())
+        for value in (None, 42, False, [], {}, "", "deadbeef", "z" * 64, "A" * 64):
+            with self.subTest(value=value):
+                self.write("split.locked.json", json.dumps({**lock, "sha256_file": value}))
+                result = self.call()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("sha256_file", result.stderr)
+
+    def test_full_file_lock_verifies_raw_bytes_not_just_questions(self):
+        split = self.root / "split.jsonl"
+        lock = json.loads((self.root / "split.locked.json").read_text())
+        lock["sha256_file"] = hashlib.sha256(split.read_bytes()).hexdigest()
+        self.write("split.locked.json", json.dumps(lock))
+        self.write("split.jsonl", split.read_text().replace('{"question"', '{ "question"', 1))
+        result = self.call()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("sha256_file", result.stderr)
+
     def test_empty_results_rejected(self):
         self.write("result.jsonl", "")
         result = self.call()

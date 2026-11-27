@@ -62,16 +62,16 @@ func TaskID(q string) string {
 	return hex.EncodeToString(h[:])[:8]
 }
 
-// VerifyLock recomputes the sha256 of the sorted questions and compares it
-// against the lock file's recorded hash. Returns the actual hash and an error
-// on mismatch or lock-file problems (missing "sha256_questions" key).
+// VerifyLock checks the sorted-question hash and, when present, the SHA-256 of
+// the split's raw bytes. Original question-only locks remain valid.
 func VerifyLock(splitPath, lockPath string) (string, error) {
 	raw, err := os.ReadFile(lockPath)
 	if err != nil {
 		return "", fmt.Errorf("read lock file: %w", err)
 	}
 	var lock struct {
-		SHA256 string `json:"sha256_questions"`
+		SHA256   string          `json:"sha256_questions"`
+		FileHash json.RawMessage `json:"sha256_file"`
 	}
 	if err := json.Unmarshal(raw, &lock); err != nil {
 		return "", fmt.Errorf("parse lock file: %w", err)
@@ -95,6 +95,25 @@ func VerifyLock(splitPath, lockPath string) (string, error) {
 	if actual != lock.SHA256 {
 		return actual, fmt.Errorf("LOCK MISMATCH: split file sha256 %s != locked %s (test set changed since lock; refusing)",
 			actual, lock.SHA256)
+	}
+	if lock.FileHash != nil {
+		var expected string
+		if err := json.Unmarshal(lock.FileHash, &expected); err != nil || len(expected) != 64 {
+			return actual, fmt.Errorf("lock file has invalid sha256_file (expected 64 lowercase hex characters)")
+		}
+		decoded, err := hex.DecodeString(expected)
+		if err != nil || hex.EncodeToString(decoded) != expected {
+			return actual, fmt.Errorf("lock file has invalid sha256_file (expected 64 lowercase hex characters)")
+		}
+		bytes, err := os.ReadFile(splitPath)
+		if err != nil {
+			return actual, fmt.Errorf("read split file for sha256_file: %w", err)
+		}
+		fileHash := sha256.Sum256(bytes)
+		fileActual := hex.EncodeToString(fileHash[:])
+		if fileActual != expected {
+			return actual, fmt.Errorf("LOCK MISMATCH: split file sha256_file %s != locked %s (test set changed since lock; refusing)", fileActual, expected)
+		}
 	}
 	return actual, nil
 }

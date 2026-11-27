@@ -1,0 +1,19 @@
+{
+  "n_test": 185,
+  "sha256_questions": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+  "sha256_file": "23279cfee72fab537ea5c134390e975126d23d8d0c698b8db7cbc68f3266f617",
+  "source_lock": {
+    "split": "test-v45",
+    "rows": 185,
+    "sha256": "0c69fad7780f2b0b85e7384b9ca722e02daf483f505db00e821e04e9601d0fb0",
+    "recipe": "sorted normalized question strings, newline-joined, UTF-8",
+    "families": {
+      "icai": 86,
+      "gstcl": 29,
+      "mock": 70
+    },
+    "gold_sha": "408601036361e254a755df1e93ed037280fafc5573a0ff84131fe7ca8105b0f5",
+    "grader_sha": "578209defa4f83be40fe9b872d2b162de0470e5978ff680e1ef88d259303b9f8",
+    "benchmark_id": "7cb1102704ce1901"
+  }
+}

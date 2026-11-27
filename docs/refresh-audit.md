@@ -16,7 +16,7 @@ Old Karsastra training/evaluation conversations were used as pointers, then chec
 | October 11: v4.2 SFT evaluation | Raw original-benchmark result: 565/776 | Import unchanged raw output; do not relabel as a later regrade |
 | October 11: gold/grader audit | Same original questions, five corrected answers/types | Preserve original files and publish separate corrected snapshot |
 | October 13: v4.4 evaluation | Kaggle `ashishbhatt1st/v44-eval-4b-kg3`, `results/karsastra-4b-v44-20261013-035249.jsonl` | Selectively recover this small result file only; validate all 785 IDs/questions/golds; 702/785 recorded passes |
-| October 17: broader holdouts | Two independent 185-row runs; four disjoint shards covering 10,009 rows | Recompute aggregate counts; publish source hashes, not private questions/golds/responses |
+| October 17: broader holdouts | Two independent 185-row runs; four disjoint shards covering 10,009 rows | Publish datasets, raw result files, source hashes and per-file counts in the subsequent dataset release |
 | Later v4.5 training work | Training data/manifests and incomplete-run discussion exist | No verified completed v4.5-model evaluation recovered; no score invented |
 
 The v4.4 file had disappeared from the inspected local output directory but was still retrievable from Kaggle. Its SHA-256 is `f40f59c0e35af55a40642c2befa9ea672582dc9bf2a57dfab9cc11639df0beb0`. No model weights were downloaded and no training or inference job was launched.
@@ -44,15 +44,15 @@ See [protocol details](protocols.md). The default core grading semantics are pre
 - The old reports remain visible with explicit supersession notices. Their “in flight” statements describe October snapshots, not live jobs.
 - Historical model labels are retained verbatim. Their presence in a response file does not independently establish provider/model identity.
 
-## Broader holdouts and privacy boundary
+## Broader benchmark release
 
-The newer heldout datasets were not part of the original public export. This refresh publishes aggregate-only evidence to preserve test confidentiality and avoid silently expanding data licensing scope.
+The newer datasets were not part of the original public export. The first refresh published aggregate-only evidence; the owner subsequently authorized publication of the evaluation datasets and saved responses. The released snapshots, provenance and caveats are listed in [dataset details](datasets.md). Training data, model weights and private customer records are not included. Released questions must not be described as secret holdouts in future evaluations.
 
 The `test-10k` raw files have **10,009 distinct IDs, 10,002 graded rows, 2,151 strict passes, and seven rubric-ungradable rows**, not seven transport errors. Strict accuracy is 21.5057% among graded rows or 21.4907% over all rows. The archived alternative final-tolerant count is 6,716/10,009 (67.1%); an older provisional 68.4% field is not promoted to the current result. The alternate grader was not independently reconstructed in this refresh.
 
 `test-v45` is the name of an evaluation split. Both recovered 185-row files evaluate the **v4.4** model and independently record 93 passing rows. It would be false to present these as a successfully trained v4.5 model.
 
-The later holdouts test different task families. Lower scores are evidence of generalization limits, not a like-for-like regression from the original benchmark. Public readers can inspect the aggregate evidence and source fingerprints but cannot independently reproduce private-holdout scores from this checkout.
+The later benchmarks test different task families. Their lower recorded scores are not a like-for-like regression from the original benchmark. Public readers can now inspect questions, reference answers and saved responses and recount worker verdicts from this checkout. Reproducing the historical worker's grading logic or model inference is a separate claim, not established by a recount.
 
 ## Verification scope
 
